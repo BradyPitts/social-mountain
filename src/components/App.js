@@ -31,8 +31,9 @@ class App extends Component {
   }
 
   updatePost(id, text) {
-    axios.put('https://practiceapi.devmountain.com/api/posts?id=${id}', {text})
+    axios.put(`https://practiceapi.devmountain.com/api/posts?id=${id}`, {text})
     .then(res =>{
+      console.log(res.data)
       this.setState({posts: res.data})
     })
     .catch(err =>{
@@ -41,7 +42,7 @@ class App extends Component {
   }
 
   deletePost(id) {
-    axios.delete('https://practiceapi.devmountain.com/api/posts?id=${id}')
+    axios.delete(`https://practiceapi.devmountain.com/api/posts?id=${id}`)
     .then(res =>{
       this.setState({posts: res.data})
     })
@@ -77,7 +78,7 @@ class App extends Component {
               text = {post.text}
               date = {post.date}
               updatePostFn={this.updatePost}
-              deletePost={this.deletePost}
+              deletePostFn={this.deletePost}
              />
           ))}
           
